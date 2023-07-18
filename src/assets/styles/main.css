@@ -1,0 +1,252 @@
+@font-face {
+    font-family: "Helvetica Now Text";
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/HelveticaNowText-Regular.otf) format('otf');
+}
+
+@font-face {
+    font-family: "Helvetica Now Text";
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/HelveticaNowText-Medium.otf) format('otf');
+}
+
+@font-face {
+    font-family: "Helvetica Now Text";
+    font-style: normal;
+    font-weight: 700;
+    src: url(../fonts/HelveticaNowText-Bold.otf) format('otf');
+}
+
+
+body {
+    font-family: "Helvetica Now Text", Helvetica, Arial, sans-serif;
+}
+
+
+.header-top {
+    background-color: #f5f5f5;
+    height: 45px;
+    padding: 0 36px 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.menu-list {
+    display: flex;
+}
+
+.menu-list > * + * {
+    margin-left: 10px;
+}
+
+.menu-list li {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.menu-list li > * + * {
+    margin-left: 10px;
+}
+
+.menu-list li a {
+    text-decoration: none;
+    color: #111;
+}
+
+
+.header-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px 0 36px;
+}
+
+.logo-container {
+    width: 59px;
+    height: 59px;
+    margin: 1px 0;
+}
+
+.logo-svg {
+    transform: scale(1.33);
+    width: 100%;
+    height: 100%;
+}
+
+.nav-search-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+}
+
+.nav-list li {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.nav-list > * + * {
+    margin-left: 10px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #111;
+    padding: 12px;
+}
+
+.nav-list li a:hover {
+    border-bottom: 2px solid #111;
+}
+
+.search-bar-container {
+    position: relative;
+    top: 0;
+    left: 180px;
+    width: 100px;
+}
+
+.search-bar {
+    width: 100%;
+    background-color: #f5f5f5;
+    border: none;
+    padding: 10px 48px;
+    border-radius: 30px;
+}
+
+.search-bar::placeholder {
+    color: #999;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.search-bar:hover {
+    background-color: #e5e5e5;
+}
+
+.search-btn {
+    position: absolute;
+    display: flex;
+    padding: 6px;
+    top: 1px;
+    left: 1px;
+    background-color: transparent;
+    border: none;
+    border-radius: 30px;
+}
+
+.search-btn:hover {
+    background-color: #e5e5e5;
+}
+
+.acc-btn-group {
+    display: flex;
+}
+
+.acc-btn-group > * + * {
+    margin-left: 15px;
+}
+
+.acc-btn {
+    background-color: transparent;
+    display: flex;
+    border: none;
+    border-radius: 30px;
+    padding: 6px;
+}
+
+.acc-btn:hover {
+    background-color: #e5e5e5;
+}
+
+
+.main-container {
+    padding: 20px 48px 0 48px;
+}
+
+
+.wall-header {
+    padding: 0 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-title {
+    font-size: 24px;
+    transform: scale(0.75);
+    transform-origin: left center;
+}
+
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+}
+
+.product-card-container {
+    /* width: 80%; */
+    display: inline-block;
+    position: relative;
+}
+
+.product-card-body {
+    position: relative;
+    max-width: 592px;
+}
+
+.product-card-body > * + * {
+    margin-top: 10px;
+}
+
+.product-image-container {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.product-image {
+    max-width: 100%;
+    max-height: auto;
+    position: relative;
+    vertical-align: middle;
+    left: 50%;
+    transform: translate(-50%);
+    height: 400px;
+    width: 592px;
+    object-fit:cover;
+}
+
+.product-card-info {
+    min-height: 120px;
+}
+
+.product-info-text > * + * {
+    margin-top: 8px;
+}
+
+.product-card-info > * + * {
+    margin-top: 20px;
+}
+
+.product-title {
+    color: #111;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.product-category {
+    color: #757575;
+    font-size: 16px;
+}
