@@ -13,9 +13,17 @@ export type MenuItem = {
 
 export type Navigation = {
     id: number
+    slug: string
     title: string
     url: string
-    subNav: string[]
+    subNav: SubNavigation[]
+}
+
+
+export type SubNavigation = {
+    id: number
+    title: string
+    subItems: string[]
 }
 
 
