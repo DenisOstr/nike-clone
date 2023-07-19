@@ -17,3 +17,31 @@ export type Navigation = {
     url: string
     subNav: string[]
 }
+
+
+export type SortByList = {
+    slug: string
+    title: string
+}
+
+
+export type SortByProps = {
+    sortByList: SortByList[]
+    currentSortBy: SortByList
+    callback: any
+}
+
+
+export type Product = {
+    id: number
+    title: string
+    description: string
+    price: number
+    category: string
+    image: string
+}
+
+
+export type ProductCardProp = {
+    product: Product
+}
