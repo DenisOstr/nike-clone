@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import { DividerProps, MenuItem, Navigation } from "../types/Global"
 
 function Divider({ id }: DividerProps) {
@@ -37,20 +39,66 @@ function TopHeader() {
 
 
 function BottomHeader() {
+    const [subNav, setSubNav] = useState(false)
+    const [activeNavItem, setActiveNavItem] = useState('')
+
     const navigation: Navigation[] = [
-        { id: 1, title: 'New & Featured', url: '#', subNav: [] },
-        { id: 2, title: 'Men', url: '#', subNav: [] },
-        { id: 3, title: 'Women', url: '#', subNav: [] },
-        { id: 4, title: 'Kids', url: '#', subNav: [] },
-        { id: 5, title: 'Accessories', url: '#', subNav: [] },
-        { id: 6, title: 'Sale', url: '#', subNav: [] },
+        { id: 1, slug: 'new-and-featured', title: 'New & Featured', url: '#', subNav: [
+            { id: 1, title: 'New & Featured', subItems: [] },
+            { id: 2, title: 'Back to School', subItems: [] }
+        ] },
+        { id: 2, slug: 'men', title: 'Men', url: '#', subNav: [
+            { id: 1, title: 'All Shoes', subItems: [] },
+            { id: 2, title: 'All clothing', subItems: [] }
+        ] },
+        { id: 3, slug: 'women', title: 'Women', url: '#', subNav: [
+            { id: 1, title: 'All Shoes', subItems: [] },
+            { id: 2, title: 'All clothing', subItems: [] }
+        ] },
+        { id: 4, slug: 'kids', title: 'Kids', url: '#', subNav: [
+            { id: 1, title: 'Back to School', subItems: [] },
+            { id: 2, title: 'Shoes by Size', subItems: [] }
+        ] },
+        { id: 5, slug: 'accessories', title: 'Accessories', url: '#', subNav: [
+            { id: 1, title: 'Featured', subItems: [] },
+            { id: 2, title: 'All Accessories', subItems: [] }
+        ] },
+        { id: 6, slug: 'sale', title: 'Sale', url: '#', subNav: [
+            { id: 1, title: 'All Sale - Up to 40% Off', subItems: [] },
+            { id: 2, title: 'Men', subItems: [] }
+        ] },
     ]
 
+    const openSubNav = ({ slug }: { slug: string }) => {
+        setActiveNavItem(slug)
+        setSubNav(true)
+    }
+
+    const closeSubNav = () => {
+        setSubNav(false)
+    }
+
     const navList = navigation.map((navItem: Navigation) =>
-        <li key={navItem.id}>
+        <li key={navItem.id} onMouseOver={() => openSubNav({ slug: navItem.slug})}>
             <a href={navItem.url}>{ navItem.title }</a>
         </li>
-    );
+    )
+
+    const subNavList = navigation.map(item => {
+        if (item.slug == activeNavItem) {
+            return (
+                <ul className="sub-nav-list" key={item.id}>
+                    {
+                        item.subNav.map(subNavItem =>
+                            <li className="sub-nav-item" key={subNavItem.id}>
+                                <a href="#">{ subNavItem.title }</a>
+                            </li>
+                        )
+                    }
+                </ul>
+            )
+        }
+    })
 
     return (
         <>
@@ -64,6 +112,16 @@ function BottomHeader() {
                         <ul className="nav-list">
                             { navList }
                         </ul>
+
+                        {
+                            subNav ? (
+                                <div className="pre-sub-nav-container" onMouseLeave={closeSubNav}>
+                                    <div className="sub-nav-container">
+                                        { subNavList }
+                                    </div>
+                                </div>
+                            ) : null
+                        }
                     </nav>
 
                     <div className="search-bar-container">
@@ -75,11 +133,17 @@ function BottomHeader() {
                 </div>
 
                 <div className="acc-btn-group">
-                    <button className="acc-btn">
+                    <button className="acc-btn heart-btn">
                         <svg aria-hidden="true" className="heart-icon" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path stroke="currentColor" strokeWidth="1.5" d="M16.794 3.75c1.324 0 2.568.516 3.504 1.451a4.96 4.96 0 010 7.008L12 20.508l-8.299-8.299a4.96 4.96 0 010-7.007A4.923 4.923 0 017.205 3.75c1.324 0 2.568.516 3.504 1.451l.76.76.531.531.53-.531.76-.76a4.926 4.926 0 013.504-1.451"></path></svg>
+                    </button>
+                    <button className="mob-search-btn">
+                        <svg aria-hidden="true" className="search-icon" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path stroke="currentColor" strokeWidth="1.5" d="M13.962 16.296a6.716 6.716 0 01-3.462.954 6.728 6.728 0 01-4.773-1.977A6.728 6.728 0 013.75 10.5c0-1.864.755-3.551 1.977-4.773A6.728 6.728 0 0110.5 3.75c1.864 0 3.551.755 4.773 1.977A6.728 6.728 0 0117.25 10.5a6.726 6.726 0 01-.921 3.407c-.517.882-.434 1.988.289 2.711l3.853 3.853"></path></svg>
                     </button>
                     <button className="acc-btn">
                         <svg aria-hidden="true" className="cart-icon" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path stroke="currentColor" strokeWidth="1.5" d="M8.25 8.25V6a2.25 2.25 0 012.25-2.25h3a2.25 2.25 0 110 4.5H3.75v8.25a3.75 3.75 0 003.75 3.75h9a3.75 3.75 0 003.75-3.75V8.25H17.5"></path></svg>
+                    </button>
+                    <button className="burger-btn">
+                        <svg aria-hidden="true" className="burger-icon" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none"><path stroke="currentColor" stroke-width="1.5" d="M21 5.25H3M21 12H3m18 6.75H3"></path></svg>
                     </button>
                 </div>
             </div>
