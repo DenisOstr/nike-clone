@@ -1,7 +1,7 @@
 import { DividerProps, MenuItem, Navigation } from "../types/Global"
 
-function Divider(props: DividerProps) {
-    if (props.id == 4) {
+function Divider({ id }: DividerProps) {
+    if (id == 4) {
         return null
     }
 
@@ -46,7 +46,7 @@ function BottomHeader() {
         { id: 6, title: 'Sale', url: '#', subNav: [] },
     ]
 
-    const navList = navigation.map(navItem =>
+    const navList = navigation.map((navItem: Navigation) =>
         <li key={navItem.id}>
             <a href={navItem.url}>{ navItem.title }</a>
         </li>
